@@ -1,0 +1,1 @@
+C:\Users\maris\Documents\Code\mathstuff\badapple-calendar\Samples\Appointments\cs\Appointments.csproj;x64
