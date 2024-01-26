@@ -1,3 +1,4 @@
+# turn video into frames
 # ffmpeg -i badapple.mp4 -vf fps=1 out/%d.png
 #  ffmpeg -i Output/attempt1.mp4 -filter:v "setpts=PTS/10,fps=24" -an Output/attempt1sped.mp4
 

@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\maris\Documents\Code\mathstuff\badapple-calendar\Samples\Appointments\cs\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-01-26T05:34:09.830</Modified>
+      <Modified>2024-01-26T17:06:34.242</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\maris\Documents\Code\mathstuff\badapple-calendar\Samples\Appointments\cs\bin\x64\Debug\Appointments.exe">
       <PackagePath>entrypoint\Appointments.exe</PackagePath>
-      <Modified>2024-01-26T05:34:09.403</Modified>
+      <Modified>2024-01-26T17:06:33.973</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\maris\.nuget\packages\microsoft.csharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -496,39 +496,39 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\maris\Documents\Code\mathstuff\badapple-calendar\Samples\Appointments\cs\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2024-01-26T05:34:09.315</Modified>
+      <Modified>2024-01-26T17:06:33.919</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\maris\Documents\Code\mathstuff\badapple-calendar\Samples\Appointments\cs\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2024-01-26T05:34:09.315</Modified>
+      <Modified>2024-01-26T17:06:33.919</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\maris\Documents\Code\mathstuff\badapple-calendar\Samples\Appointments\cs\bin\x64\Debug\Scenario1_Define.xbf">
       <PackagePath>Scenario1_Define.xbf</PackagePath>
-      <Modified>2024-01-26T05:34:09.310</Modified>
+      <Modified>2024-01-26T17:06:33.915</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\maris\Documents\Code\mathstuff\badapple-calendar\Samples\Appointments\cs\bin\x64\Debug\Scenario2_Add.xbf">
       <PackagePath>Scenario2_Add.xbf</PackagePath>
-      <Modified>2024-01-26T05:34:09.315</Modified>
+      <Modified>2024-01-26T17:06:33.919</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\maris\Documents\Code\mathstuff\badapple-calendar\Samples\Appointments\cs\bin\x64\Debug\Scenario3_Replace.xbf">
       <PackagePath>Scenario3_Replace.xbf</PackagePath>
-      <Modified>2024-01-26T05:34:09.315</Modified>
+      <Modified>2024-01-26T17:06:33.919</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\maris\Documents\Code\mathstuff\badapple-calendar\Samples\Appointments\cs\bin\x64\Debug\Scenario4_Remove.xbf">
       <PackagePath>Scenario4_Remove.xbf</PackagePath>
-      <Modified>2024-01-26T05:34:09.315</Modified>
+      <Modified>2024-01-26T17:06:33.919</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\maris\Documents\Code\mathstuff\badapple-calendar\Samples\Appointments\cs\bin\x64\Debug\Scenario5_Show.xbf">
       <PackagePath>Scenario5_Show.xbf</PackagePath>
-      <Modified>2024-01-26T05:34:09.316</Modified>
+      <Modified>2024-01-26T17:06:33.920</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\maris\Documents\Code\mathstuff\badapple-calendar\Samples\Appointments\cs\bin\x64\Debug\Scenario6_Recurrence.xbf">
       <PackagePath>Scenario6_Recurrence.xbf</PackagePath>
-      <Modified>2024-01-26T05:34:09.314</Modified>
+      <Modified>2024-01-26T17:06:33.919</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\maris\Documents\Code\mathstuff\badapple-calendar\Samples\Appointments\cs\bin\x64\Debug\Styles\Styles.xbf">
       <PackagePath>Styles\Styles.xbf</PackagePath>
-      <Modified>2024-01-26T05:34:09.306</Modified>
+      <Modified>2024-01-26T17:06:33.910</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.22621.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -540,7 +540,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\maris\Documents\Code\mathstuff\badapple-calendar\Samples\Appointments\cs\bin\x64\Debug\Core\Appointments.exe">
       <PackagePath>Appointments.exe</PackagePath>
-      <Modified>2024-01-26T05:34:09.827</Modified>
+      <Modified>2024-01-26T17:06:34.238</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

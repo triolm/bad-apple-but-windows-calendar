@@ -106,6 +106,7 @@ namespace SDKTemplate
                 String[] splitLine = data[line].Trim().Split(',');
                 int placeInLine = 0;
                 long start = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                int removeLater = 0;
                 for (int j = 0; j < apptPixels.Count; j++, placeInLine++)
                 {
                     AppointmentBusyStatus prevStatus = apptPixels[j].BusyStatus;
@@ -133,10 +134,21 @@ namespace SDKTemplate
                 if (elapsed > msPerFrame)
                 {
                     Debug.WriteLine("frame " + line / height + " exceeeded alloted time by" + (elapsed - msPerFrame) + "ms.");
+                    if (line / height > 3)
+                    {
+                        removeLater = (int)(elapsed - msPerFrame);
+                    }
                 }
                 else
                 {
-                    await Task.Delay(msPerFrame - (int)elapsed);
+                    int pause = msPerFrame - (int)elapsed;
+                    if (removeLater > 0 && pause > removeLater)
+                    {
+                        Debug.WriteLine("removed " + removeLater + "ms from frame " + (line / height) + ".");
+                        pause -= removeLater;
+                        removeLater = 0;
+                    }
+                    await Task.Delay(pause);
                 }
 
             }
