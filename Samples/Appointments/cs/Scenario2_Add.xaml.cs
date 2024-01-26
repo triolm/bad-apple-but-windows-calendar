@@ -26,7 +26,8 @@ namespace SDKTemplate
     {
         private static readonly string calendarName = "bad_apple";
         private static int height = 20;
-        private static int width = 20;
+        private static int width = 30;
+        private static int msPerFrame = 500;
 
         private MainPage rootPage = MainPage.Current;
 
@@ -42,38 +43,34 @@ namespace SDKTemplate
         /// <param name="e"></param>
         private async void Add_Click(object sender, RoutedEventArgs e)
         {
-
-
             AppointmentStore appointmentStore = await AppointmentManager.RequestStoreAsync(AppointmentStoreAccessType.AppCalendarsReadWrite);
             IReadOnlyList<AppointmentCalendar> appointmentCalendars = await appointmentStore.FindAppointmentCalendarsAsync(FindAppointmentCalendarsOptions.IncludeHidden);
 
-            AppointmentCalendar calendarDisplay = null;
+            AppointmentCalendar badAppleCal = null;
             foreach (AppointmentCalendar appointmentCalendar in appointmentCalendars)
             {
 
                 if (appointmentCalendar.DisplayName == calendarName)
                 {
-                    calendarDisplay = appointmentCalendar;
+                    badAppleCal = appointmentCalendar;
                 }
             }
 
-            if (calendarDisplay == null)
+            if (badAppleCal == null)
             {
-                calendarDisplay = await appointmentStore.CreateAppointmentCalendarAsync(calendarName);
+                badAppleCal = await appointmentStore.CreateAppointmentCalendarAsync(calendarName);
             }
 
 
-            DateTime now = DateTime.Now;
-            DateTime todayAt0Hours = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0);
-            DateTimeOffset startTime = new DateTimeOffset(todayAt0Hours);
-            DateTimeOffset originalStartTime = new DateTimeOffset(todayAt0Hours);
-            TimeSpan fiveDays = new TimeSpan(5, 0, 0, 0);
+            DateTime currentTime = DateTime.Now;
+            DateTime thisMorning = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, 0, 0, 0);
+            DateTimeOffset startTime = new DateTimeOffset(thisMorning);
 
-            IReadOnlyList<Appointment> textLines = await calendarDisplay.FindAppointmentsAsync(originalStartTime.AddDays(-1), fiveDays);
+            IReadOnlyList<Appointment> apptPixels = await badAppleCal.FindAppointmentsAsync(startTime.AddDays(-1), new TimeSpan(2, 0, 0, 0));
 
-            foreach (Appointment appt in textLines)
+            foreach (Appointment appt in apptPixels)
             {
-                await calendarDisplay.DeleteAppointmentAsync(appt.LocalId);
+                await badAppleCal.DeleteAppointmentAsync(appt.LocalId);
             }
 
             for (var i = 0; i < height; i++)
@@ -81,13 +78,13 @@ namespace SDKTemplate
                 for (var ii = 0; ii < width; ii++)
                 {
                     Appointment appointment = new Appointment();
-                    appointment.Subject = Convert.ToChar('a' + ii) + "";
+                    appointment.Subject = Convert.ToChar('A' + ii) + "";
                     appointment.StartTime = startTime;
-                    await calendarDisplay.SaveAppointmentAsync(appointment);
+                    await badAppleCal.SaveAppointmentAsync(appointment);
                 }
                 startTime = startTime.AddMinutes(30);
             }
-            textLines = await calendarDisplay.FindAppointmentsAsync(originalStartTime.AddDays(-1), fiveDays);
+            apptPixels = await badAppleCal.FindAppointmentsAsync(startTime.AddDays(-1), new TimeSpan(2, 0, 0, 0));
 
             string[] data;
             StorageFolder localFolder = ApplicationData.Current.LocalFolder;
@@ -108,37 +105,39 @@ namespace SDKTemplate
             {
                 String[] splitLine = data[line].Trim().Split(',');
                 int placeInLine = 0;
-                long start = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                for (int j = 0; j < textLines.Count; j++, placeInLine++)
+                long start = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                for (int j = 0; j < apptPixels.Count; j++, placeInLine++)
                 {
-                    AppointmentBusyStatus prevStatus = textLines[j].BusyStatus;
+                    AppointmentBusyStatus prevStatus = apptPixels[j].BusyStatus;
                     if (splitLine[placeInLine] == "0")
                     {
-                        textLines[j].BusyStatus = AppointmentBusyStatus.Free;
+                        apptPixels[j].BusyStatus = AppointmentBusyStatus.Free;
                     }
                     else
                     {
-                        textLines[j].BusyStatus = AppointmentBusyStatus.Busy;
+                        apptPixels[j].BusyStatus = AppointmentBusyStatus.Busy;
 
                     }
-                    if (prevStatus != textLines[j].BusyStatus)
+                    if (prevStatus != apptPixels[j].BusyStatus)
                     {
-                        await calendarDisplay.SaveAppointmentAsync(textLines[j]);
+                        await badAppleCal.SaveAppointmentAsync(apptPixels[j]);
                     }
                     if (placeInLine >= splitLine.Length - 1)
                     {
-                        //Debug.WriteLine("e" + splitLine[placeInLine] + "e");
                         line += 1;
                         placeInLine = -1;
                         splitLine = data[line].Trim().Split(',');
                     }
                 }
-                long elapsed = start - DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                if(elapsed > 1000)
+                long elapsed = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - start;
+                if (elapsed > msPerFrame)
                 {
-                    Debug.WriteLine("write exceeeded 1000ms");
+                    Debug.WriteLine("frame " + line / height + " exceeeded alloted time by" + (elapsed - msPerFrame) + "ms.");
                 }
-                await Task.Delay(1000 - (int) elapsed);
+                else
+                {
+                    await Task.Delay(msPerFrame - (int)elapsed);
+                }
 
             }
 
